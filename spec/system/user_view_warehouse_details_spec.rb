@@ -24,10 +24,9 @@ describe 'usuario vê detalhes de um galpão' do
 
     it 'e volta para tela inicial' do
         # Arrange
-        w = Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100000,
+        Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100000,
                         address: 'Avenida do aeroporto, 1000', zipcode: '07150-000',
                         description: 'Galpão destinado para cargas internacionais')
-        w.save()
 
         # Act
         visit(root_path)

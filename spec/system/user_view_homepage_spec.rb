@@ -36,7 +36,6 @@ describe 'usuario visita tela inicial' do
     it 'e não existem galpões cadastrados' do
         # Arrange
 
-
         # Act
         visit(root_path)
 

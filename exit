@@ -1,0 +1,23 @@
+[33mcommit e138dd5cd3d88c438454106a2b2bcc2f7cbb16fe[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: IzabellyBrito <izabelly.rb@hotmail.com>
+Date:   Wed Sep 14 07:59:16 2022 -0300
+
+    Usuário vê tela de detalhes do galpão e volta para tela inicial
+
+[33mcommit 3bccacacfc61ed6eb86d1a24c3aa74af19d20962[m
+Author: IzabellyBrito <izabelly.rb@hotmail.com>
+Date:   Mon Sep 12 23:13:24 2022 -0300
+
+    Usuário vê galpões na tela inicial
+
+[33mcommit 374d2fcf95502d031a329dbf3b34e864a3dc1561[m
+Author: IzabellyBrito <izabelly.rb@hotmail.com>
+Date:   Sun Sep 11 19:46:13 2022 -0300
+
+    Visitante vê a tela inicial
+
+[33mcommit a680ea5935ed8db75fb19e1a6e987ee1e8e0e5c8[m
+Author: IzabellyBrito <izabelly.rb@hotmail.com>
+Date:   Sun Sep 11 19:16:37 2022 -0300
+
+    Setup da aplicação pronto
