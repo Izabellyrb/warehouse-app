@@ -1,5 +1,3 @@
-<section>
-
 <h2> Galpão <%=@warehouse.code %> </h2>
 <div>
     <dl>
@@ -26,6 +24,8 @@
     </dl> 
 </div>
 
-<%= link_to 'Editar Galpão', edit_warehouse_path(@warehouse.id)%>
-<%= link_to 'Voltar', root_path%>
-</section>
+<div> 
+    <%= link_to 'Editar Galpão', edit_warehouse_url(@warehouse.id)%>
+    <%= button_to 'Remover Galpão', warehouse_url(@warehouse.id), method: :delete %>
+    <%= link_to 'Voltar', root_url%>
+</div>

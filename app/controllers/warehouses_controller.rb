@@ -1,6 +1,7 @@
 class WarehousesController < ApplicationController
+    before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
+
     def show
-        @warehouse = Warehouse.find(params[:id])
     end
 
     def new
@@ -9,7 +10,6 @@ class WarehousesController < ApplicationController
 
     def create
         # criar novo galpão
-        warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :address, :area, :description, :zipcode)
         @warehouse = Warehouse.new(warehouse_params) 
        
         if @warehouse.save()
@@ -23,14 +23,9 @@ class WarehousesController < ApplicationController
     end
 
     def edit
-        @warehouse = Warehouse.find(params[:id])
     end
 
     def update
-        @warehouse = Warehouse.find(params[:id])
-
-        warehouse_params = params.require(:warehouse).permit(:name, :code, :city, :address, :area, :description, :zipcode)
-
         if @warehouse.update(warehouse_params) #atualizar os parametros
             redirect_to warehouse_url(@warehouse.id)
             flash[:notice] = 'Galpão atualizado com sucesso!'
@@ -38,7 +33,23 @@ class WarehousesController < ApplicationController
             flash.now[:notice] = 'Não foi possível atualizar o galpão.'
             render 'edit'
         end
-        
+    end
+
+    def destroy
+        @warehouse.destroy
+        redirect_to root_url 
+        flash[:notice] = 'Galpão removido com sucesso!'
+    end
+
+
+    private
+    def set_warehouse
+        @warehouse = Warehouse.find(params[:id])
+    end
+
+    def warehouse_params
+        params.require(:warehouse).permit(:name, :code, :city, :address, :area, :description, :zipcode) 
+        #Strong parameters: filtrar infos q serão solic p usuario no form
     end
 
 end
