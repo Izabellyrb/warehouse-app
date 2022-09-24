@@ -5,7 +5,7 @@ describe 'usuário cadastra um galpão' do
         #Arrange
 
         #Act
-        visit root_path
+        visit root_url
         click_on 'Cadastrar Galpão'
 
         #Assert
@@ -22,19 +22,19 @@ describe 'usuário cadastra um galpão' do
         #Arrange
 
         #Act
-        visit root_path
+        visit root_url
         click_on 'Cadastrar Galpão'
         fill_in 'Nome', with: 'Rio de Janeiro'
         fill_in 'Código', with: 'RIO'
         fill_in 'Cidade', with: 'Rio de Janeiro'
         fill_in 'Área', with: '32000'
         fill_in 'Endereço', with: 'Av. do Museu do Amanhã, 100'
-        fill_in 'CEP', with: '20100-000'
+        fill_in 'CEP', with: '20100000'
         fill_in 'Descrição', with: 'Galpão localizado no Rio de Janeiro capital.'
         click_on 'Enviar'
 
         #Assert
-        expect(current_path).to eq(root_path)
+        expect(current_url).to eq(root_url)
         expect(page).to have_content 'Galpão cadastrado com sucesso!'
         expect(page).to have_content('Código: RIO')
         expect(page).to have_content('Cidade: Rio de Janeiro')
@@ -45,15 +45,26 @@ describe 'usuário cadastra um galpão' do
         #Arrange
 
         #Act
-            visit root_path
-            click_on 'Cadastrar Galpão'
-            fill_in 'Nome', with: ''
-            fill_in 'Código', with: ''
-            fill_in 'Descrição', with: ''
-            click_on 'Enviar'
+        visit root_url
+        click_on 'Cadastrar Galpão'
+        fill_in 'Nome', with: ''
+        fill_in 'Código', with: ''
+        fill_in 'Cidade', with: ''
+        fill_in 'Endereço', with: ''
+        fill_in 'Área', with: ''
+        fill_in 'Descrição', with: ''
+        fill_in 'CEP', with: ''
+        click_on 'Enviar'
 
         #Assert
-        expect(page).to have_content 'Galpão não cadastrado! Analise os dados e tente novamente.'
-
+        expect(page).to have_content 'Galpão não cadastrado!'
+        expect(page).to have_content 'Nome não pode ficar em branco'
+        expect(page).to have_content 'Código não pode ficar em branco'
+        expect(page).to have_content 'Cidade não pode ficar em branco'
+        expect(page).to have_content 'Endereço não pode ficar em branco'
+        expect(page).to have_content 'Área não pode ficar em branco'
+        expect(page).to have_content 'Descrição não pode ficar em branco'
+        expect(page).to have_content 'CEP não pode ficar em branco'
+        expect(page).to have_content 'CEP não possui o tamanho esperado (8 caracteres)'
     end
 end
