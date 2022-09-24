@@ -1,0 +1,28 @@
+<section id="suppliers">
+	<h2> Fornecedores </h2>
+	<div>
+			<%# link_to 'Cadastrar Galpão', new_warehouse_url %>
+	</div>
+
+  <% if @suppliers.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Localização</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @suppliers.each do |s| %>
+          <tr>
+            <td><%= link_to s.brand_name, supplier_url(s.id) %></td>
+            <td><%= s.city %> - <%= s.state %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Não há fornecedores cadastrados</p>
+  <% end %>
+
+</section>

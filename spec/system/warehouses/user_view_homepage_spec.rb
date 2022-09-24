@@ -23,7 +23,7 @@ describe 'usuario visita tela inicial' do
         visit(root_url)
 
         # Assert
-        expect(page).not_to have_content('Não existem galpões cadastrados')
+
         expect(page).to have_content('Rio')
         expect(page).to have_content('Código: SDU')
         expect(page).to have_content('Cidade: Rio de Janeiro')
