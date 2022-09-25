@@ -13,7 +13,7 @@ pt-BR:
         description: "Descrição"
         zipcode: "CEP"
       supplier: 
-        corporate_name: "Razão Social"
+        corporate_name: "Razão social"
         brand_name: "Nome fantasia"
         registration_number: "CNPJ"
         city: "Cidade"

@@ -9,7 +9,7 @@ describe 'Usuário cadastra um novo fornecedor' do
     click_on('Cadastrar fornecedores')
 
 		#Assert
-    expect(page).to have_field('Razão Social')
+    expect(page).to have_field('Razão social')
 		expect(page).to have_field('Nome fantasia')
 		expect(page).to have_field('CNPJ')
 
@@ -21,7 +21,7 @@ describe 'Usuário cadastra um novo fornecedor' do
 		#Act
     visit(suppliers_url)
     click_on('Cadastrar fornecedores')
-    fill_in 'Razão Social', with: 'ACME Industria Ltda.'
+    fill_in 'Razão social', with: 'ACME Industria Ltda.'
     fill_in 'Nome fantasia', with: 'ACME ltda'
     fill_in 'CNPJ', with: '75443709000160'
     fill_in 'Endereço', with: 'Rua Pamplona, 1083'
@@ -44,15 +44,15 @@ describe 'Usuário cadastra um novo fornecedor' do
 
 		#Act
     visit(suppliers_url)
-		click_on('Cadastrar fornecedores')
-		fill_in 'Razão Social', with: ''
+		click_on 'Cadastrar fornecedores'
+		fill_in 'Razão social', with: ''
     fill_in 'Nome fantasia', with: ''
     fill_in 'CNPJ', with: ''
 		click_on 'Enviar'
 
 		#Assert
 		expect(page).to have_content 'Fornecedor não cadastrado!'
-		expect(page).to have_content "Razão Social não pode ficar em branco"
+		expect(page).to have_content "Razão social não pode ficar em branco"
 		expect(page).to have_content "Nome fantasia não pode ficar em branco"
 		expect(page).to have_content "CNPJ não pode ficar em branco"
 		expect(page).to have_content "Email não pode ficar em branco"

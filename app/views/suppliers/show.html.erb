@@ -1,7 +1,7 @@
 <h2> Fornecedor <%=@supplier.brand_name %> </h2>
 <div>
     <dl>
-        <dt><strong>Razão Social:</strong></dt>
+        <dt><strong>Razão social:</strong></dt>
         <dd><%= @supplier.corporate_name %></dd>
         
         <dt><strong>CNPJ:</strong></dt>
@@ -22,7 +22,6 @@
 </div>
 
 <div> 
-    <%#= link_to 'Editar Fornecedor', edit_supplier_url(@supplier.id)%>
-    <%#= button_to 'Remover Galpão', supplier_url(@supplier.id), method: :delete %>
+    <%= link_to 'Editar Fornecedor', edit_supplier_url(@supplier.id)%>
     <%= link_to 'Voltar', suppliers_url%>
 </div>

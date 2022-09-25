@@ -23,7 +23,9 @@ describe 'Usuário acessa a página de fornecedores' do
     
     # Act
     visit(root_url)
-    click_on 'Fornecedores'
+    within('nav') do
+      click_on 'Fornecedores'
+    end
 
     # Assert
     expect(page).not_to have_content('Não existem fornecedores cadastrados')
@@ -39,10 +41,11 @@ describe 'Usuário acessa a página de fornecedores' do
 
     # Act
     visit(root_url)
-    click_on 'Fornecedores'
+    within('nav') do
+      click_on 'Fornecedores'
+    end
 
     # Assert
     expect(page).to have_content('Não há fornecedores cadastrados')
   end
-
 end
