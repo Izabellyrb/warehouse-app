@@ -6,7 +6,9 @@ describe 'Usuário acessa a página de fornecedores' do
 
     # Act
     visit(root_url)
-    click_on 'Fornecedores'
+    within('nav') do
+      click_on 'Fornecedores'
+    end
 
     # Assert
     expect(current_url).to eq(suppliers_url)

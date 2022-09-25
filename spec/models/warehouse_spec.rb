@@ -97,7 +97,7 @@ RSpec.describe Warehouse, type: :model do
             area: 10_000, description: 'Alguma descrição1.', zipcode: '00000000')
 
         second_warehouse = Warehouse.create(name: 'name1', code: 'COD', city: 'Cidade2', address: 'Endereço, 2', 
-        area: 20_000, description: 'Alguma descrição2.', zipcode: '00000000')
+        area: 20_000, description: 'Alguma descrição2.', zipcode: '00005000')
 
         #Act
         result = second_warehouse.valid?

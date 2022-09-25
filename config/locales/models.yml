@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       warehouse: "Galpão" #nome do model e tradução
+      supplier: "Fornecedor" 
     attributes:
       warehouse: #nome do model e traduções dos atributos
         name: "Nome"
@@ -11,3 +12,12 @@ pt-BR:
         area: "Área"
         description: "Descrição"
         zipcode: "CEP"
+      supplier: 
+        corporate_name: "Razão Social"
+        brand_name: "Nome fantasia"
+        registration_number: "CNPJ"
+        city: "Cidade"
+        address: "Endereço" 
+        state: "Estado"
+        email: "Email"
+        phone: "Telefone"

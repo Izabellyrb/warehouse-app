@@ -11,7 +11,7 @@ class WarehousesController < ApplicationController
     def create
         # criar novo galpão
         @warehouse = Warehouse.new(warehouse_params) 
-       
+        
         if @warehouse.save()
             #voltar para página inicial
             flash[:notice] = 'Galpão cadastrado com sucesso!'
