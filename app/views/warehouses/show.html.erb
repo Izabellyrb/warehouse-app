@@ -17,7 +17,8 @@
         <dd><%= @warehouse.address %></dd>
 
         <dt><strong>CEP:</strong></dt>
-        <dd><%= @warehouse.zipcode%></dd>
+        <% cep = @warehouse.zipcode %>
+        <dd><%= cep[0..4] %>-<%= cep[5..7]%></dd>
 
         <dt><strong>Descrição:</strong></dt>
         <dd><%= @warehouse.description %></dd>

@@ -48,7 +48,7 @@ describe 'usuário edita galpão' do
         expect(page).to have_content('Cidade: Maceio-AL')
         expect(page).to have_content('Área: 50000 m²')
         expect(page).to have_content('Endereço: Av. Rio Verde, 1000')
-        expect(page).to have_content('CEP: 04700011')
+        expect(page).to have_content('CEP: 04700-011')
         expect(page).to have_content('Descrição: Galpão secundário localizado no litoral do estado.')
     end
 

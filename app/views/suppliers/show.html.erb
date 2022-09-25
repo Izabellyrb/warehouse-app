@@ -5,7 +5,8 @@
         <dd><%= @supplier.corporate_name %></dd>
         
         <dt><strong>CNPJ:</strong></dt>
-        <dd><%= @supplier.registration_number %></dd>
+        <% cnpj = @supplier.registration_number %>
+        <dd><%= cnpj[0..1] %>.<%= cnpj[2..4]%>.<%= cnpj[5..7]%>/<%= cnpj[8..11]%>-<%= cnpj[12..14]%></dd>
         
         <dt><strong>Endereço:</strong></dt>
         <dd><%= @supplier.address %> - 

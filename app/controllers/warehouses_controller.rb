@@ -41,7 +41,6 @@ class WarehousesController < ApplicationController
         flash[:notice] = 'Galpão removido com sucesso!'
     end
 
-
     private
     def set_warehouse
         @warehouse = Warehouse.find(params[:id])
