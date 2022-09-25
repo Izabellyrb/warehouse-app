@@ -1,0 +1,28 @@
+<h2> Fornecedor <%=@supplier.brand_name %> </h2>
+<div>
+    <dl>
+        <dt><strong>Razão Social:</strong></dt>
+        <dd><%= @supplier.corporate_name %></dd>
+        
+        <dt><strong>CNPJ:</strong></dt>
+        <dd><%= @supplier.registration_number %></dd>
+        
+        <dt><strong>Endereço:</strong></dt>
+        <dd><%= @supplier.address %> - 
+            <%= @supplier.city %> - 
+            <%= @supplier.state %></dd>
+
+        <dt><strong>Email:</strong></dt>
+        <dd><%= @supplier.email %></dd>
+
+        <dt><strong>Telefone:</strong></dt>
+        <% fone = @supplier.phone %>
+        <dd>(<%= fone[0..1] %>) <%= fone[2..5]%>-<%= fone[6..9]%></dd>
+    </dl> 
+</div>
+
+<div> 
+    <%#= link_to 'Editar Fornecedor', edit_supplier_url(@supplier.id)%>
+    <%#= button_to 'Remover Galpão', supplier_url(@supplier.id), method: :delete %>
+    <%= link_to 'Voltar', suppliers_url%>
+</div>

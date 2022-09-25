@@ -16,7 +16,8 @@ describe 'Usuário acessa a página de fornecedores' do
     # Arrange
     Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 
                     address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
-    Supplier.create!(corporate_name: 'Stella e Regina Transportes ME', brand_name:'SR Transportes', registration_number:'15152295000199', address:'Av. Condessa Elisabeth, 5500', city:'Bauru', state:'SP', email:'producao@stellaereginatransportesme.com.br', phone: '1127199140')
+    Supplier.create!(corporate_name: 'Stella e Regina Transportes ME', brand_name:'SR Transportes', registration_number:'15152295000199', 
+                    address:'Av. Condessa Elisabeth, 5500', city:'Bauru', state:'SP', email:'producao@stellaereginatransportesme.com.br', phone: '1127199140')
     
     # Act
     visit(root_url)
