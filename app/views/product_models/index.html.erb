@@ -1,12 +1,18 @@
-<h1> Modelos de produtos</h1>
+<h2> Modelos de produtos</h2>
+
+	<div>
+			<%= link_to 'Cadastrar modelos de produtos', new_product_model_url %>
+	</div>
 
 <% @product_models.each do |pm| %>
   <div>
-    <h3><%= pm.name %></h3>
+    <h3><%= link_to pm.name, pm %></h3>
   <ul>
     <li> SKU: <%= pm.sku %></li>
+    <li> Fornecedor: <%= pm.supplier.brand_name %></li>
+    <li> Peso: <%= pm.weight %> g </li>
+    <li> Dimensões: <%= pm.width %> cm x <%= pm.height %> cm x <%= pm.depth %> cm</li>
 
-    <li> <%= pm.supplier.brand_name %></li>
   </ul>
   </div>
 <% end %>

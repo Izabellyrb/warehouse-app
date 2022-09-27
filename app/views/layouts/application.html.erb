@@ -13,13 +13,23 @@
     <header>
       <h1>Galpões & Estoque</h1>
       <nav>
+        <%= link_to 'Galpões', root_url %> | 
         <%= link_to 'Fornecedores', suppliers_url %> | 
-        <%= link_to 'Modelos de produtos', product_models_url %>
+        <%= link_to 'Modelos de produtos', product_models_url %> |
+
+        <% if user_signed_in? %>
+          <%= current_user.email %>
+          <%= link_to 'Sair', root_url %> 
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_url %> 
+        <% end %>
+
       </nav>
     </header>
     <main>
       <div>
         <%= flash[:notice]%> <!-- ou somente notice -->
+        <%= flash[:alert]%> <!-- ou somente alert -->
       </div>
       <%= yield %>
     </main>

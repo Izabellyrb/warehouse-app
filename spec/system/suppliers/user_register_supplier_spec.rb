@@ -55,7 +55,6 @@ describe 'Usuário cadastra um novo fornecedor' do
 		expect(page).to have_content "Razão social não pode ficar em branco"
 		expect(page).to have_content "Nome fantasia não pode ficar em branco"
 		expect(page).to have_content "CNPJ não pode ficar em branco"
-		expect(page).to have_content "Email não pode ficar em branco"
 		expect(page).to have_content "CNPJ não possui o tamanho esperado (14 caracteres)"
 	end
 end

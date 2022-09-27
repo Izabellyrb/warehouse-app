@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      product_model: "Modelo de produto" #nome do model e tradução
+    attributes:
+      product_model: #nome do model e traduções dos atributos
+        name: "Nome"
+        weight: "Peso"
+        width: "Largura"
+        height: "Altura" 
+        depth: "Profundidade"
+        sku: "SKU"
+        supplier_id: "Fornecedor" 
+        supplier: "Fornecedor" 
+
