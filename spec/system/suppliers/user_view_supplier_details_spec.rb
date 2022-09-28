@@ -17,6 +17,39 @@ describe 'Usuário acessa a pagina de um fornecedor' do
 
   end
 
+  it 'e vê modelos de produtos do fornecedor' do
+    # Arrange
+    supplier = Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 
+    address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
+
+    ProductModel.create!(name:'TV 32', weight: 8000, width: 70, height: 45, depth: 10, sku:'TV32-SAMS-SGHU2', supplier: supplier)
+
+    # Act
+    visit(suppliers_url)
+    click_on('ACME ltda')
+
+    # Assert
+    expect(page).to have_content('Modelos de produtos deste fornecedor')
+    expect(page).to have_content('Modelo de produto: TV 32')
+    expect(page).to have_content('TV32-SAMS-SGHU2')
+
+  end
+
+  it 'e não há produtos cadastrados' do
+    #Arrange
+    supplier = Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 
+    address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
+    
+    #Act
+    visit(suppliers_url)
+    click_on('ACME ltda')
+
+    #Assert
+    expect(page).to have_content('Modelos de produtos deste fornecedor')
+    expect(page).to have_content('Não há modelos de produtos cadastrados para este fornecedor')
+  end
+
+
   it 'e volta para tela inicial' do
     # Arrange
     Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 

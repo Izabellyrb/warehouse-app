@@ -26,3 +26,20 @@
     <%= link_to 'Editar Fornecedor', edit_supplier_url(@supplier.id)%>
     <%= link_to 'Voltar', suppliers_url%>
 </div>
+
+
+<h2> Modelos de produtos deste fornecedor </h2>
+
+    <% if @product_model.any? %>
+        <% @product_model.each do |pm| %>
+            <ul>
+                <li> Modelo de produto: <%= pm.name %> </li>
+                <li> Peso: <%= pm.weight %> g</li>
+                <li> Dimensões: <%= pm.width %> cm x <%= pm.height %> cm x <%= pm.depth %> cm</li>
+                <li> SKU: <%= pm.sku %> </li>
+                <li> Fornecedor <%= pm.supplier.brand_name %> </li>
+            </ul>
+        <% end %>
+    <% else %>
+    <p>Não há modelos de produtos cadastrados para este fornecedor </p>
+  <% end %>
