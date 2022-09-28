@@ -18,8 +18,8 @@
         <%= link_to 'Modelos de produtos', product_models_url %> |
 
         <% if user_signed_in? %>
-          <%= current_user.email %>
-          <%= link_to 'Sair', root_url %> 
+          <%= current_user.email %> |
+          <%= button_to 'Sair', destroy_user_session_url, method: :delete %> 
         <% else %>
           <%= link_to 'Entrar', new_user_session_url %> 
         <% end %>
