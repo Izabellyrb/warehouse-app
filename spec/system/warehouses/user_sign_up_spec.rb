@@ -6,7 +6,10 @@ describe 'Usuário se autentica' do
   
 		#Act
     visit root_url
-    click_on 'Entrar'
+    within('nav') do
+      click_on 'Entrar'
+    end
+
     click_on 'Criar uma conta'
     fill_in 'Nome', with: 'Joana'
     fill_in 'E-mail', with: 'joana@email.com'

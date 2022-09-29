@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-    def index
-        @warehouses = Warehouse.all
-    end
+  before_action :authenticate_user!, only: [:index]
+
+	def index
+			@warehouses = Warehouse.all
+	end
 end

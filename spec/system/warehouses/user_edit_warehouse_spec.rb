@@ -1,12 +1,27 @@
 require 'rails_helper'
 
 describe 'usuário edita galpão' do 
+    it 'somente se estiver autenticado' do
+        #Arrange
+    
+        #Act
+        visit root_url
+        within('nav') do
+          click_on 'Fornecedores'
+        end
+     
+        #Assert
+        expect(current_url).to eq(new_user_session_url)
+      end
+
     it 'a partir da página de detalhes' do
         # Arrange
+        user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
         Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', address: 'Av. Rio verde, 1049', 
         area: 50_000, description: 'Galpão secundário localizado no interior do estado.', zipcode: '04700010')
 
         # Act
+        login_as(user)
         visit root_url
         click_on 'Maceio'
         click_on 'Editar Galpão'
@@ -24,10 +39,12 @@ describe 'usuário edita galpão' do
 
     it 'com sucesso' do
         # Arrange
+        user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
         Warehouse.create!(name: 'Maceio', code: 'MCZ', city: 'Maceio', address: 'Av. Rio verde, 1049', 
         area: 50_000, description: 'Galpão secundário localizado no interior do estado.', zipcode: '04700010')
 
         # Act
+        login_as(user)
         visit root_url
         click_on 'Maceio'
         click_on 'Editar Galpão'
@@ -54,10 +71,12 @@ describe 'usuário edita galpão' do
 
     it 'e mantém os campos obrigatórios' do
         # Arrange
+        user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
         Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', address: 'Av. Rio verde, 1049', 
         area: 50_000, description: 'Galpão secundário localizado no interior do estado.', zipcode: '04700010')
 
         # Act
+        login_as(user)
         visit root_url
         click_on 'Maceio'
         click_on 'Editar Galpão'

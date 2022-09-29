@@ -3,11 +3,14 @@ require 'rails_helper'
 describe 'Usuário cadastra um modelo de produto' do
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
+
     supplier = Supplier.create!(corporate_name: 'Samsung eletronicos BR', brand_name:'Samsung', registration_number:'55394009000160', address:'Rua Três de Maio, 1083', city:'Guarulhos', state:'SP', email:'contato@asamsung.com', phone: '1140044040')
 
     other_supplier = Supplier.create!(corporate_name: 'M&A Entregas Expressas Ltda', brand_name:'M&A Express', registration_number:'64827572000121', address:'Rua Vera Pimentel Amorim, 159', city:'Aracruz', state:'ES', email:'adm@meaexpress.com.br', phone: '2727862646')
 
     #Act
+    login_as(user)
     visit(root_url)
     click_on('Modelos de produtos')
     click_on('Cadastrar modelos de produtos')
@@ -29,9 +32,12 @@ describe 'Usuário cadastra um modelo de produto' do
 
   it 'deve preencher todos os campos' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
+
     supplier = Supplier.create!(corporate_name: 'Samsung eletronicos BR', brand_name:'Samsung', registration_number:'55394009000160', address:'Rua Três de Maio, 1083', city:'Guarulhos', state:'SP', email:'contato@asamsung.com', phone: '1140044040')
 
     #Act
+    login_as(user)
     visit(root_url)
     click_on('Modelos de produtos')
     click_on('Cadastrar modelos de produtos')

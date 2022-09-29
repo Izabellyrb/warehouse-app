@@ -1,12 +1,27 @@
 require 'rails_helper'
 
 describe 'Usuário edita cadastro de fornecedor' do
+  it 'somente se estiver autenticado' do
+    #Arrange
+
+    #Act
+    visit root_url
+    within('nav') do
+      click_on 'Fornecedores'
+    end
+ 
+    #Assert
+    expect(current_url).to eq(new_user_session_url)
+  end
+
   it 'a partir da página de detalhes de fornecedores' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
     Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 
       address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
 
     #Act
+    login_as(user)
     visit(suppliers_url)
     click_on('ACME ltda')
     click_on('Editar Fornecedor')
@@ -20,10 +35,12 @@ describe 'Usuário edita cadastro de fornecedor' do
 
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
     Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160', 
       address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
 
     #Act
+    login_as(user)
     visit(suppliers_url)
     click_on('ACME ltda')
     click_on('Editar Fornecedor')

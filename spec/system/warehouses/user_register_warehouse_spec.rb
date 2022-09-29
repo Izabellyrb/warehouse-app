@@ -1,10 +1,25 @@
 require 'rails_helper'
 
 describe 'usuário cadastra um galpão' do
+	it 'somente se estiver autenticado' do
+    #Arrange
+
+    #Act
+    visit root_url
+    within('nav') do
+      click_on 'Fornecedores'
+    end
+ 
+    #Assert
+    expect(current_url).to eq(new_user_session_url)
+  end
+
 	it 'a partir da tela inicial' do
 		#Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
 
 		#Act
+		login_as(user)
 		visit root_url
 		click_on 'Cadastrar Galpão'
 
@@ -20,8 +35,10 @@ describe 'usuário cadastra um galpão' do
 
 	it 'com sucesso' do
 		#Arrange
+		user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
 
 		#Act
+		login_as(user)
 		visit root_url
 		click_on 'Cadastrar Galpão'
 		fill_in 'Nome', with: 'Rio de Janeiro'
@@ -43,8 +60,10 @@ describe 'usuário cadastra um galpão' do
 
 	it 'com dados incompletos' do #teste de mensagem (se aparece erro)
 		#Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
 
-		#Act
+		#Act   
+		login_as(user)
 		visit root_url
 		click_on 'Cadastrar Galpão'
 		fill_in 'Nome', with: ''

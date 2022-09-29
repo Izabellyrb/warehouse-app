@@ -1,10 +1,26 @@
 require 'rails_helper'
 
 describe 'Usuário vê modelos de produtos' do
-  it 'a partir do menu' do
+  it 'se estiver autenticado' do
     #Arrange
 
     #Act
+    visit root_url
+    within('nav') do
+      click_on 'Modelos de produtos'
+    end
+ 
+    #Assert
+    expect(current_url).to eq(new_user_session_url)
+  end
+
+
+  it 'a partir do menu' do
+    #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
+
+    #Act
+    login_as(user)
     visit root_url
     within('nav') do
       click_on 'Modelos de produtos'
@@ -16,6 +32,7 @@ describe 'Usuário vê modelos de produtos' do
 
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
     supplier = Supplier.create!(corporate_name: 'Samsung eletronicos BR', brand_name:'Samsung', registration_number:'55394009000160', address:'Rua Três de Maio, 1083', city:'Guarulhos', state:'SP', email:'contato@asamsung.com', phone: '1140044040')
 
     ProductModel.create!(name:'TV 32', weight: 8000, width: 70, height: 45, depth: 10,
@@ -24,6 +41,7 @@ describe 'Usuário vê modelos de produtos' do
                         sku:'CEL20-SAMS-AWEF5', supplier: supplier)
 
     #Act
+    login_as(user)
     visit root_url
     within('nav') do
       click_on 'Modelos de produtos'
@@ -40,8 +58,10 @@ describe 'Usuário vê modelos de produtos' do
 
   it 'e não há produtos cadastrados' do
     #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
     
     #Act
+    login_as(user)
     visit root_url
     click_on 'Modelos de produtos'
 
