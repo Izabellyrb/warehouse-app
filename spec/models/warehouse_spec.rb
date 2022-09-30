@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Warehouse, type: :model do
-  describe '#valid?' do #teste de validação de dados
-    context 'presence' do
+    describe '#valid?' do #teste de validação de dados
+        context 'presence' do
         it 'false when name is empty' do
             #Arrange
             warehouse = Warehouse.new(name: '', code: 'COD', city: 'Cidade', address: 'Endereço, 2', 
@@ -88,52 +88,65 @@ RSpec.describe Warehouse, type: :model do
             expect(result).to eq false
             end
         
-    end
+        end
     
-    context 'uniqueness' do
-    it 'false when name is already in use' do
-        #Arrange
-        first_warehouse = Warehouse.create(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
-            area: 10_000, description: 'Alguma descrição1.', zipcode: '00000000')
+        context 'uniqueness' do
+            it 'false when name is already in use' do
+                #Arrange
+                first_warehouse = Warehouse.create(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
+                    area: 10_000, description: 'Alguma descrição1.', zipcode: '00000000')
 
-        second_warehouse = Warehouse.create(name: 'name1', code: 'COD', city: 'Cidade2', address: 'Endereço, 2', 
-        area: 20_000, description: 'Alguma descrição2.', zipcode: '00005000')
+                second_warehouse = Warehouse.create(name: 'name1', code: 'COD', city: 'Cidade2', address: 'Endereço, 2', 
+                area: 20_000, description: 'Alguma descrição2.', zipcode: '00005000')
 
-        #Act
-        result = second_warehouse.valid?
+                #Act
+                result = second_warehouse.valid?
 
-        #Assert
-        expect(result).to eq false
+                #Assert
+                expect(result).to eq false
+                end
+
+            it 'false when code is already in use' do
+            #Arrange
+            first_warehouse = Warehouse.create(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
+                area: 10_000, description: 'Alguma descrição1.', zipcode: '00000000')
+            
+            second_warehouse = Warehouse.create(name: 'name2', code: 'RIO', city: 'Cidade2', address: 'Endereço, 2', 
+            area: 20_000, description: 'Alguma descrição2.', zipcode: '11111111')
+            
+            #Act
+            result = second_warehouse.valid?
+            
+            #Assert
+            expect(result).to eq false
+            end
         end
 
-    it 'false when code is already in use' do
-        #Arrange
-        first_warehouse = Warehouse.create(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
-            area: 10_000, description: 'Alguma descrição1.', zipcode: '00000000')
-        
-        second_warehouse = Warehouse.create(name: 'name2', code: 'RIO', city: 'Cidade2', address: 'Endereço, 2', 
-        area: 20_000, description: 'Alguma descrição2.', zipcode: '11111111')
-        
-        #Act
-        result = second_warehouse.valid?
-        
-        #Assert
-        expect(result).to eq false
-        end
+        context 'length' do
+            it 'false when zipcode is too short' do
+            #Arrange
+            warehouse = Warehouse.new(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
+                area: 10_000, description: 'Alguma descrição1.', zipcode: '000000')
+
+            #Act
+            result = warehouse.valid?
+
+            #Assert
+            expect(result).to eq false
+            end
+        end 
     end
 
-    context 'length' do
-    it 'false when zipcode is too short' do
+    describe '#full_description' do
+        it 'exibe o nome e código' do
         #Arrange
-        warehouse = Warehouse.new(name: 'name1', code: 'RIO', city: 'Cidade1', address: 'Endereço, 1', 
-            area: 10_000, description: 'Alguma descrição1.', zipcode: '000000')
+        warehouse = Warehouse.new(name: 'Galpão do Rio', code: 'RIO')
 
         #Act
-        result = warehouse.valid?
+        result = warehouse.full_description
 
         #Assert
-        expect(result).to eq false
+        expect(result).to eq('RIO | Galpão do Rio')
         end
-    end 
-end
+    end
 end

@@ -1,4 +1,4 @@
-<h2> Modelos de produtos</h2>
+<h2> <%= ProductModel.model_name.human%> </h2>
 
 	<div>
 			<%= link_to 'Cadastrar modelos de produtos', new_product_model_url %>
@@ -8,10 +8,10 @@
   <div>
     <h3><%= link_to pm.name, pm %></h3>
   <ul>
-    <li> SKU: <%= pm.sku %></li>
-    <li> Fornecedor: <%= pm.supplier.brand_name %></li>
-    <li> Peso: <%= pm.weight %> g </li>
-    <li> Dimensões: <%= pm.width %> cm x <%= pm.height %> cm x <%= pm.depth %> cm</li>
+    <li> <%= ProductModel.human_attribute_name(:sku) %>: <%= pm.sku %></li>
+    <li> <%= ProductModel.human_attribute_name(:supplier)%>: <%= pm.supplier.brand_name %></li>
+    <li> <%= ProductModel.human_attribute_name(:weight)%>: <%= pm.weight %> g </li>
+    <li> <%= ProductModel.human_attribute_name(:dimentions) %>: <%= pm.width %> cm x <%= pm.height %> cm x <%= pm.depth %> cm</li>
 
   </ul>
   </div>

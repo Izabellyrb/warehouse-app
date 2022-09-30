@@ -108,5 +108,19 @@ RSpec.describe Supplier, type: :model do
       end
     end
   end
+
+  describe '#full_supplier' do
+    it 'exibe o nome fantasia, razão social e CNPJ' do
+    #Arrange
+    user = User.new(name: 'Joana Silva', email:'joana.silva@email.com')
+
+    #Act
+    result = user.description
+
+    #Assert
+    expect(result).to eq('Joana Silva <joana.silva@email.com>')
+    end
+  end
+  
 end
 

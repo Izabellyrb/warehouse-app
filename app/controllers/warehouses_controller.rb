@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit]
+  before_action :authenticate_user!
 	before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
 
 	def show

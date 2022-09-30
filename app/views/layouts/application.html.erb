@@ -11,19 +11,21 @@
 
   <body>
     <header>
-      <h1>Galpões & Estoque</h1>
+      <%= link_to root_url do %>
+        <h1> Galpões & Estoque </h1>
+      <% end %>
       <nav>
         <%= link_to 'Galpões', root_url %> | 
         <%= link_to 'Fornecedores', suppliers_url %> | 
         <%= link_to 'Modelos de produtos', product_models_url %> |
+        <%= link_to 'Registrar pedido', new_order_url %> |
 
         <% if user_signed_in? %>
-          <%= current_user.email %> |
+          <%= current_user.description %> |
           <%= button_to 'Sair', destroy_user_session_url, method: :delete %> 
         <% else %>
           <%= link_to 'Entrar', new_user_session_url %> 
         <% end %>
-
       </nav>
     </header>
     <main>

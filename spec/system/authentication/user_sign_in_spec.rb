@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Usuário se autentica' do
 	it 'com sucesso' do
 		#Arrange
-    user = User.create!(email: 'maria@gmail.com', password: 'password')
-
+    user = User.create!(name: 'Maria Silva', email: 'maria@gmail.com', password: 'password')
+ 
 		#Act
     login_as(user)
     visit(root_url)
@@ -12,13 +12,13 @@ describe 'Usuário se autentica' do
     #Assert
     within('nav') do
       expect(page).to have_button 'Sair'
-      expect(page).to have_content 'maria@gmail.com'
+      expect(page).to have_content 'Maria Silva <maria@gmail.com>'
     end
   end
 
   it 'e faz logout' do
     #Arrange
-    user = User.create!(email: 'maria@gmail.com', password: 'password')
+    user = User.create!(name: 'Maria silva', email: 'maria@gmail.com', password: 'password')
 
     #Act
     login_as(user)
@@ -28,7 +28,7 @@ describe 'Usuário se autentica' do
     #Assert
     expect(page).to have_link 'Entrar'
     expect(page).not_to have_button 'Sair'
-    expect(page).not_to have_content 'maria@gmail.com'
+    expect(page).not_to have_content 'Maria Silva <maria@gmail.com>'
   end
 
 end

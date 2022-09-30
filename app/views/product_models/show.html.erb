@@ -2,18 +2,18 @@
 
 <div>
 	<dl>
-		<dt><strong>Peso:</strong></dt>
+		<dt><strong><%= ProductModel.human_attribute_name(:weight) %>:</strong></dt>
 		<dd><%= @product_model.weight %> g</dd>
 					
-		<dt><strong>Dimensões:</strong></dt>
+		<dt><strong><%= ProductModel.human_attribute_name(:dimentions) %>:</strong></dt>
 		<dd><%= @product_model.width %> cm x 
 				<%= @product_model.height %> cm x 
 				<%= @product_model.depth %> cm</dd>
 
-		<dt><strong>SKU:</strong></dt>
+		<dt><strong><%= ProductModel.human_attribute_name(:sku) %>:</strong></dt>
 		<dd><%= @product_model.sku %></dd>
 
-		<dt><strong>Fornecedor:</strong></dt>
+		<dt><strong><%= ProductModel.human_attribute_name(:supplier) %>:</strong></dt>
 		<dd><%= @product_model.supplier.brand_name %></dd>
 	</dl> 
 </div>
