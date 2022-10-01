@@ -1,4 +1,5 @@
-<h2> <%= Order.model_name.human %> <%= @order.code%> </h2>
+<h2> Detalhes do pedido </h2>
+<h3> <%= Order.model_name.human %> <%= @order.code%> </h3>
 
 <div>
 	<dl>
@@ -17,5 +18,6 @@
 </div>
 
 <div> 
+	<%= link_to 'Editar', edit_order_url(@order.id)%>
 	<%= link_to 'Voltar', orders_url%>
 </div>

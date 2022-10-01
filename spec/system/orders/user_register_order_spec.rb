@@ -51,6 +51,35 @@ describe 'Usuário cadastra um pedido' do
     expect(page).to have_content 'Usuário responsável: Joana <joana@email.com>'
     expect(page).not_to have_content 'Galpão destino: Galpão Maceio'
     expect(page).not_to have_content 'Fornecedor: ACME Industria Ltda.'
-
   end
+
+  it 'e não informa a data de entrega' do
+    #Arrange
+    user = User.create!(name: 'Joana', email: 'joana@email.com', password: 'password')
+
+    warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100000,
+                              address: 'Avenida do aeroporto, 1000', zipcode: '07150000',
+                              description: 'Galpão destinado para cargas internacionais')
+
+    supplier = Supplier.create!(corporate_name: 'Samsung eletronicos BR', brand_name:'Samsung', 
+                                registration_number:'55394009000160', address:'Rua Três de Maio, 1083',
+                                city:'Guarulhos', state:'SP', email:'contato@asamsung.com', phone: '1140044040')
+    Supplier.create!(corporate_name: 'ACME Industria Ltda.', brand_name:'ACME ltda', registration_number:'75443709000160',
+    address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
+    
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC1234567')
+
+    #Act
+    login_as(user)
+    visit root_url
+    click_on 'Registrar pedido'
+    select 'GRU | Aeroporto SP', from: 'Galpão destino'
+    select supplier.full_supplier, from: 'Fornecedor'
+    fill_in 'Data prevista de entrega', with: ''
+    click_on 'Registrar'
+
+    #Assert
+    expect(page).to have_content 'Não foi possível registrar o pedido'
+    expect(page).to have_content 'Data prevista de entrega não pode ficar em branco'
+    end
 end

@@ -1,0 +1,15 @@
+
+<ul>
+  <li>
+    <strong> <%= Order.human_attribute_name(:code) %>: </strong>
+    <%= link_to order.code, order %>
+  </li>
+  <li>
+    <strong> <%= Order.human_attribute_name(:warehouse_id) %>: </strong>
+    <%= order.warehouse.full_description %>
+  </li>
+    <li>
+    <strong> <%= Order.human_attribute_name(:supplier_id) %>: </strong>
+    <%= order.supplier.corporate_name %>
+  </li>
+</ul>

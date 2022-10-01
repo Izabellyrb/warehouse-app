@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name: 'ACME Marcas ltda', brand_name:'ACME ltda', registration_number:'75443709000160', 
       address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
 
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2022-10-01')
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
 
       #Act
       result = order.valid?
@@ -77,7 +77,7 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name: 'ACME Marcas ltda', brand_name:'ACME ltda', registration_number:'75443709000160', 
       address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
 
-      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2022-10-01')
+      order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
 
       #Act
       order.save!
@@ -97,9 +97,9 @@ RSpec.describe Order, type: :model do
       supplier = Supplier.create!(corporate_name: 'ACME Marcas ltda', brand_name:'ACME ltda', registration_number:'75443709000160', 
       address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
 
-      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2022-10-01')
+      first_order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
 
-      second_order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: '2022-12-15')
+      second_order = Order.new(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now.to_date)
 
       #Act
       second_order.save!

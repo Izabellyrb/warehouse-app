@@ -1,0 +1,5 @@
+<h2> <%= Order.human_attribute_name(:my_orders) %> </h2>
+
+<% @orders.each do |order| %>
+  <%= render order %>
+<% end %>
