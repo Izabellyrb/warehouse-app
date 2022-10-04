@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user! 
-  before_action :set_order, only: [:show, :edit, :update] 
-  before_action :check_user, only: [:show, :edit, :update]
+  before_action :set_order, only: [:show, :edit, :update, :delivered, :canceled] 
+  before_action :check_user, only: [:show, :edit, :update, :delivered, :canceled]
   
   def index
     @orders = current_user.orders
@@ -48,6 +48,16 @@ class OrdersController < ApplicationController
     flash[:notice] = 'Pedido atualizado com sucesso!'
   end
 
+  def delivered
+    @order.delivered!
+    redirect_to @order
+  end
+
+  def canceled
+    @order.canceled!
+    redirect_to @order
+  end
+  
 
   private
     def set_order
@@ -60,8 +70,7 @@ class OrdersController < ApplicationController
     
     def check_user
       if @order.user != current_user
-        return redirect_to root_url
-        flash[:alert] = 'Você não tem permissão para acessar este pedido.'
+        return redirect_to root_url, alert: 'Você não tem permissão para acessar este pedido.'
       end
     end
 end

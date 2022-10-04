@@ -48,7 +48,6 @@ describe 'Usuário busca por pedido' do
     expect(page).to have_content("Resultados da busca por: #{order.code}")
     expect(page).to have_content('1 pedido encontrado')
     expect(page).to have_content("Código: #{order.code}")
-    expect(page).to have_content("Fornecedor: Samsung eletronicos BR")
     expect(page).to have_content("Galpão destino: GRU | Aeroporto SP")
   end
 

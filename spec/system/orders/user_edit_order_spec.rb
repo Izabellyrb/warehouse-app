@@ -45,14 +45,14 @@ describe 'Usuário cadastra um pedido' do
   click_on 'Meus pedidos'
     click_on order1.code
     click_on 'Editar'
-    fill_in 'Data prevista de entrega', with: 2.day.from_now.to_date
+    fill_in 'Data prevista de entrega', with: '04-10-2022'
     select supplier2.corporate_name, from: 'Fornecedor'
     click_on 'Registrar'
 
     # Assert
     expect(page).to have_content('Pedido atualizado com sucesso!')
     expect(page).to have_content("Fornecedor: #{supplier2.corporate_name}")
-    expect(page).to have_content("Data prevista de entrega: 03/10/2022")
+    expect(page).to have_content("Data prevista de entrega: 04/10/2022")
   end
 
   it 'caso seja o responsável' do

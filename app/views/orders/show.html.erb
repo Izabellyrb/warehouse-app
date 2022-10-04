@@ -14,8 +14,17 @@
 
 		<dt><strong> <%= Order.human_attribute_name(:user_id) %>: </strong></dt>
 		<dd><%= @order.user.description %></dd>
+
+		<dt><strong> <%= Order.human_attribute_name(:status) %>: </strong></dt>
+		<dd><%= I18n.translate(@order.status) %></dd>
 	</dl> 
 </div>
+
+<% if @order.pending? %>
+	<%= button_to 'Marcar como entregue', delivered_order_url(@order.id)%>
+	<%= button_to 'Marcar como cancelado', canceled_order_url(@order.id)%>
+	<% else %>
+<% end %>
 
 <div> 
 	<%= link_to 'Editar', edit_order_url(@order.id)%>

@@ -25,9 +25,9 @@ describe 'Usuário vê seus próprios pedidos' do
                                 registration_number:'55394009000160', address:'Rua Três de Maio, 1083',
                                 city:'Guarulhos', state:'SP', email:'contato@asamsung.com', phone: '1140044040')
     
-    order1 = Order.create!(user: usuario1, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
-    order11 = Order.create!(user: usuario1, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.month.from_now)
-    order2 = Order.create!(user: usuario2, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
+    order1 = Order.create!(user: usuario1, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date, status: 'pending')
+    order2 = Order.create!(user: usuario2, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now, status: 'canceled')
+    order11 = Order.create!(user: usuario1, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.month.from_now, status: 'delivered')
 
     # Act
     login_as(usuario1)
@@ -36,8 +36,12 @@ describe 'Usuário vê seus próprios pedidos' do
 
     # Assert
     expect(page).to have_content(order1.code)
-    expect(page).to have_content(order11.code)
+    expect(page).to have_content('pendente')
+    expect(page).not_to have_content('cancelado')
     expect(page).not_to have_content(order2.code)
+    expect(page).to have_content(order11.code)
+    expect(page).to have_content('entregue')
+
   end
 
   it 'e visita um pedido' do

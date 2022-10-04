@@ -1,4 +1,7 @@
 pt-BR:
+  pending: "pendente"
+  canceled: "cancelado"
+  delivered: "entregue"
   activerecord:
     models:
       order: 
@@ -17,6 +20,9 @@ pt-BR:
         edit_order: "Editar pedido"
         code: "Código"
         my_orders: "Meus pedidos"
+        status: "Status do pedido"
+        
+
 
 
 
