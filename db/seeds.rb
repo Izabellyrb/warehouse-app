@@ -26,5 +26,12 @@ o1 = Order.create!(user: user1, warehouse: w1, supplier: s1, estimated_delivery_
 o2 = Order.create!(user: user1, warehouse: w2, supplier: s2, estimated_delivery_date: 1.month.from_now)
 o3 = Order.create!(user: user2, warehouse: w3, supplier: s2, estimated_delivery_date: 1.year.from_now)
 
+# Order items
+pi1 = OrderItem.create!(product_model: pm1, order: o1, quantity: 19)
+pi2 = OrderItem.create!(product_model: pm2, order: o1, quantity: 12)  
+pi3 = OrderItem.create!(product_model: pm3, order: o3, quantity: 5)  
+pi4 = OrderItem.create!(product_model: pm1, order: o3, quantity: 2)   
+
+
 
 

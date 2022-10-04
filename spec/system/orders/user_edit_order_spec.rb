@@ -39,20 +39,20 @@ describe 'Usuário cadastra um pedido' do
     
     order1 = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
 
-  #Act
-  login_as(user)
-  visit root_url
-  click_on 'Meus pedidos'
+    #Act
+    login_as(user)
+    visit root_url
+    click_on 'Meus pedidos'
     click_on order1.code
     click_on 'Editar'
-    fill_in 'Data prevista de entrega', with: '04-10-2022'
+    fill_in 'Data prevista de entrega', with: '12/12/2022'
     select supplier2.corporate_name, from: 'Fornecedor'
     click_on 'Registrar'
 
     # Assert
     expect(page).to have_content('Pedido atualizado com sucesso!')
-    expect(page).to have_content("Fornecedor: #{supplier2.corporate_name}")
-    expect(page).to have_content("Data prevista de entrega: 04/10/2022")
+    expect(page).to have_content("Fornecedor: Aguas Brancas Ltda")
+    expect(page).to have_content("Data prevista de entrega: 12/12/2022")
   end
 
   it 'caso seja o responsável' do
