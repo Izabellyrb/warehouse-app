@@ -90,7 +90,6 @@ RSpec.describe Order, type: :model do
 
     it 'e o código é único' do
       #Arrange
-      
       user = User.create!(name: 'Maria silva', email: 'maria@gmail.com', password: 'password')
       warehouse = Warehouse.create!(name: 'Galpãozão', code: 'COD', city: 'Cidade', address: 'Endereço, 2', 
       area: 10_000, description: 'Alguma descrição.', zipcode: '12346578')
@@ -106,6 +105,24 @@ RSpec.describe Order, type: :model do
 
       #Assert
       expect(second_order.code).not_to eq(first_order.code)
+    end
+
+    it 'e não deve ser modificado' do
+      #Arrange
+      user = User.create!(name: 'Maria silva', email: 'maria@gmail.com', password: 'password')
+      warehouse = Warehouse.create!(name: 'Galpãozão', code: 'COD', city: 'Cidade', address: 'Endereço, 2', 
+      area: 10_000, description: 'Alguma descrição.', zipcode: '12346578')
+      supplier = Supplier.create!(corporate_name: 'ACME Marcas ltda', brand_name:'ACME ltda', registration_number:'75443709000160', 
+      address:'Rua Pamplona, 1083', city:'São Paulo', state:'SP', email:'contato@acme.com', phone: '1124384557')
+
+      order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now.to_date)
+      original_code = order.code
+
+      #Act
+      order.update!(estimated_delivery_date: 1.month.from_now)
+
+      #Assert
+      expect(order.code).to eq(original_code)
     end
   end
 end

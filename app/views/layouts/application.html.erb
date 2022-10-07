@@ -7,9 +7,11 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <div class="container">
     <header>
       <%= link_to root_url do %>
         <h1> Galpões & Estoque </h1>
@@ -23,19 +25,19 @@
 
         <!-- Config login -->
         <% if user_signed_in? %>
+          <%= current_user.description %> 
+          <%= button_to 'Sair', destroy_user_session_url, method: :delete, class: "btn btn-primary btn-sm"  %> 
           <%= form_with(url: search_orders_url, method: :get) do |f| %>
             <%= f.label :query, 'Buscar pedido' %>:
             <%= f.text_field :query %>
-            <%= f.submit 'Buscar'%>
-        <% end %>
-          <%= current_user.description %> |
-          <%= button_to 'Sair', destroy_user_session_url, method: :delete %> 
+            <%= f.submit 'Buscar', class: "btn btn-primary btn-sm"%>
+          <% end %>
         <% else %>
-          <%= link_to 'Entrar', new_user_session_url %> 
+          <%= link_to 'Entrar', new_user_session_url, class: "btn btn-primary btn-sm" %> 
         <% end %>
-
       </nav>
     </header>
+
     <main>
       <div>
         <%= flash[:notice]%> <!-- ou somente notice -->

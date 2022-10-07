@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :delivered, :canceled] 
   before_action :check_user, only: [:show, :edit, :update, :delivered, :canceled]
   
@@ -34,7 +34,11 @@ class OrdersController < ApplicationController
 
   def search
     @code = params["query"]
-    @orders = Order.where("code LIKE ?", "%#{@code}%")
+    if @code.empty?
+      @code = nil
+    else
+    @orders = Order.where("code LIKE ?","%#{@code}%")
+    end
   end
 
   def edit
@@ -50,6 +54,11 @@ class OrdersController < ApplicationController
 
   def delivered
     @order.delivered!
+    @order.order_items.each do |item|
+      item.quantity.times do 
+        StockProduct.create!(order: @order, product_model: item.product_model, warehouse: @order.warehouse)
+      end
+    end
     redirect_to @order
   end
 

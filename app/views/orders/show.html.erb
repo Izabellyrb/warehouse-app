@@ -20,19 +20,26 @@
 	</dl> 
 </div>
 
-<h2> Itens do pedido </h2>
+	<% if @order.pending? %>
+		<%= button_to 'Marcar como entregue', delivered_order_url(@order.id), class: "btn btn-primary btn-sm" %>
+		<%= button_to 'Marcar como cancelado', canceled_order_url(@order.id), class: "btn btn-primary btn-sm" %>
+	<% end %>
 
-<% @order.order_items.each do |item| %>
-	<%= item.quantity %> x <%= item.product_model.name %> 
-<% end %>
-
-<% if @order.pending? %>
-	<%= button_to 'Marcar como entregue', delivered_order_url(@order.id)%>
-	<%= button_to 'Marcar como cancelado', canceled_order_url(@order.id)%>
+<div>
+	<h2> Itens do pedido </h2>
+	<% if @order.order_items.any? %>
+		<% @order.order_items.each do |item| %>
+			<ul>
+				<li> <%= item.quantity %> x <%= item.product_model.name %></li>
+			</ul> 
+		<% end %>
 	<% else %>
-<% end %>
+		<p>Não há itens neste pedido</p>
+	<% end %>
+		<%= link_to 'Adicionar item', new_order_order_item_url(order_id: @order.id), class: "btn btn-primary btn-sm" %>
+</div> 
 
-<div> 
-	<%= link_to 'Editar', edit_order_url(@order.id)%>
-	<%= link_to 'Voltar', orders_url%>
-</div>
+	<div> 
+		<%= link_to 'Editar', edit_order_url(@order.id), class: "btn btn-primary btn-sm" %>
+		<%= link_to 'Voltar', orders_url, class: "btn btn-primary btn-sm" %>
+	</div>

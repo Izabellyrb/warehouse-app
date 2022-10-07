@@ -18,20 +18,14 @@ s3 = Supplier.create!(corporate_name: 'Gran RM Marcenaria ltd.', brand_name:'GRM
 
 # Product models
 pm1 = ProductModel.create!(name:'Smartphone AS20', weight: 15000, width: 6, height: 19, depth: 2, sku:'CEL20-SAMASDS-AWEF5', supplier: s2)
-pm2 = ProductModel.create!(name:'TV 32 polegadas', weight: 8000, width: 70, height: 45, depth: 10, sku:'TV32-SAMSGRS-SGHU2', supplier: s2)   
-pm3 = ProductModel.create!(name:'Geladeira 2 portas', weight: 90000, width: 150, height: 190, depth: 120, sku:'GERA22-450DE-SGH50', supplier: s3)
+pm2 = ProductModel.create!(name:'TV 32 polegadas', weight: 8000, width: 70, height: 45, depth: 10, sku:'TV32-SAMSGRS-SGHU2', supplier: s2) 
+pm3 = ProductModel.create!(name:'TV 40 polegadas HD', weight: 9500, width: 90, height: 55, depth: 10, sku:'TV40-SAMSGRS-SGHU2', supplier: s2)
+pm4 = ProductModel.create!(name:'Geladeira 2 portas', weight: 90000, width: 150, height: 190, depth: 120, sku:'GERA22-450DE-SGH50', supplier: s3)
+pm5 = ProductModel.create!(name:'Fogão 4 bocas', weight: 12000, width: 90, height: 150, depth: 120, sku:'FGAO22-450DE-SGH50', supplier: s1)
 
 # Orders
 o1 = Order.create!(user: user1, warehouse: w1, supplier: s1, estimated_delivery_date: 1.week.from_now)
 o2 = Order.create!(user: user1, warehouse: w2, supplier: s2, estimated_delivery_date: 1.month.from_now)
 o3 = Order.create!(user: user2, warehouse: w3, supplier: s2, estimated_delivery_date: 1.year.from_now)
-
-# Order items
-pi1 = OrderItem.create!(product_model: pm1, order: o1, quantity: 19)
-pi2 = OrderItem.create!(product_model: pm2, order: o1, quantity: 12)  
-pi3 = OrderItem.create!(product_model: pm3, order: o3, quantity: 5)  
-pi4 = OrderItem.create!(product_model: pm1, order: o3, quantity: 2)   
-
-
-
-
+o4 = Order.create!(user: user2, warehouse: w2, supplier: s2, estimated_delivery_date: 1.year.from_now)
+o5 = Order.create!(user: user1, warehouse: w2, supplier: s3, estimated_delivery_date: 1.year.from_now)

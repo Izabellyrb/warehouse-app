@@ -1,8 +1,12 @@
-<h2> Resultados da busca por: <%= @code %> </h2>
+<h2> Resultados da busca por: <%=@code%></h2>
 
-<h3> <%=@orders.count%> <%=Order.model_name.human(count: @orders.count).downcase%> 
-      <%=I18n.translate(:found, count: @orders.count)%></h3>
-
-<% @orders.each do |order| %>
-  <%= render order %>
+<% if @orders.present? %>
+  <h3> <%=@orders.count%> <%=Order.model_name.human(count: @orders.count).downcase%> 
+        <%=I18n.translate(:found, count: @orders.count)%>
+  </h3>
+  <% @orders.each do |order| %>
+      <%= render order %>
+  <% end %>
+<% else %>
+  <h3> Nada a exibir </h3>
 <% end %>
